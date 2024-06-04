@@ -9,7 +9,7 @@ export const syncGoogleCalendar = (token) => async (dispatch) => {
     }
   
     try {
-        const res = await axios.post('http://localhost:5000/api/google-calendar/sync', null, {
+        const res = await axios.post('https://evallo-calendar-api.onrender.com/api/google-calendar/sync', null, {
         headers: { 'x-auth-token': token }
         });
         const responseData = { ...res.data, token }; // Include token in the response data
