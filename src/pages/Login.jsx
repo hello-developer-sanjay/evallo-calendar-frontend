@@ -11,7 +11,6 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 const Container = styled.div`
     position: relative;
     min-height: 90vh;
