@@ -1,21 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login, loginSuccess } from '../actions/authActions';
+import { login } from '../actions/authActions';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { RingLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50vh;
-  padding: 2rem;
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://sanjaybasket.s3.ap-south-1.amazonaws.com/background.webp') no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
+      transition: filter 0.3s ease-in-out;
+    }
+
+    &:hover::before {
+      filter: blur(3px);
+    }
 `;
 
 const LoginForm = styled.form`
@@ -44,13 +69,25 @@ const fadeIn = keyframes`
   }
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  animation: ${fadeIn} 1s ease-in-out;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+`;
+
 const Title = styled.h2`
   font-family: 'Cinzel Decorative', cursive;
   color: #d4af37;
   text-align: center;
-  margin-bottom: 2rem;
-  animation: ${fadeIn} 1s ease-in-out;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  margin-left: 0.5rem;
+`;
+
+const LogoImage = styled.img`
+  height: 3rem; /* Adjust height as needed */
+  width: auto;
 `;
 
 const Input = styled.input`
@@ -116,20 +153,7 @@ const ToggleIcon = styled(FontAwesomeIcon)`
   color: #d4af37;
 `;
 
-const ForgotPasswordLink = styled(Link)`
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 16px;
-  color: #d4af37;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: text-shadow 0.5s ease;
-  &:hover {
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-  }
-`;
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -150,7 +174,6 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -176,7 +199,10 @@ const Login = () => {
   return (
     <Container>
       <LoginForm onSubmit={handleSubmit}>
-        <Title aria-label="HogwartsEdx Title">HogwartsEdx</Title>
+        <TitleContainer>
+          <LogoImage src="https://sanjaybasket.s3.ap-south-1.amazonaws.com/certifications/logo.png" alt="EventEase Logo" />
+          <Title aria-label="EventEase Title">EventEase</Title>
+        </TitleContainer>
         <Input
           type="email"
           placeholder="Email"
@@ -210,12 +236,10 @@ const Login = () => {
           )}
         </Button>
         <GoogleButton onClick={handleGoogleLogin} aria-label="Login with Google">
-          <GoogleIcon icon={faEye} />
+          <GoogleIcon icon={faGoogle} />
           Login with Google
         </GoogleButton>
-        <ForgotPasswordLink to="/forgot-password" aria-label="Forgot Password Link">
-          Forgot Password? Click to reset
-        </ForgotPasswordLink>
+       
       </LoginForm>
       <ToastContainer />
     </Container>
