@@ -8,6 +8,7 @@ import { getEvents, createEvent, updateEvent, deleteEvent } from '../actions/eve
 import useAuth from '../hooks/useAuth';
 import EventForm from './EventForm';
 import GoogleCalendarSync from './GoogleCalendarSync';
+import LoginPrompt from './LoginPrompt'; // Import the new component
 
 const Container = styled.div`
   max-width: 800px;
@@ -74,11 +75,11 @@ const Calendar = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoginPrompt />; // Replace loading message with LoginPrompt
   }
 
   if (!isAuthenticated) {
-    return <div>Please log in to view this page.</div>;
+    return <LoginPrompt />; // Replace unauthenticated message with LoginPrompt
   }
 
   const formatEvents = (events) => {
