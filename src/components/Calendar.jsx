@@ -8,7 +8,7 @@ import { getEvents, createEvent, updateEvent, deleteEvent } from '../actions/eve
 import useAuth from '../hooks/useAuth';
 import EventForm from './EventForm';
 import GoogleCalendarSync from './GoogleCalendarSync';
-import LoginPrompt from './LoginPrompt'; // Import the new component
+import LoginPrompt from './LoginPrompt'; 
 
 const Container = styled.div`
   max-width: 800px;
