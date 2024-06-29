@@ -43,10 +43,8 @@ const Container = styled.div`
 `;
 
 const LoginForm = styled.form`
-  background: linear-gradient(135deg, #3a3a3a, #1e1e1e);
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   max-width: 400px;
   width: 100%;
   transform: perspective(1000px) rotateY(10deg);
