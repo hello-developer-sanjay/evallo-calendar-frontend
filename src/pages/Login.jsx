@@ -170,7 +170,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'https://evallo-calendar-api.onrender.com/api/auth/google';
+    window.location.href = 'https://eventease-api.onrender.com/api/auth/google';
   };
 
   return (
